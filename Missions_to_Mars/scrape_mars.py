@@ -80,32 +80,32 @@ def scrape_all():
     tables = pd.read_html(facts_url)
     mars_facts_html = tables[0].to_html(header=False, index=False)
 
-    #**************** SCRAPE HEMISPHERE IMAGES **********************
+    #********************SCRAPE THE ASTROGEOLOGY SITE**************
     # Visit the USGS Astrogeology site to obtain high resolution images for each of Mar's hemisphers.
+    # NOTE: This site is no longer available
     # hemispheres_url='https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-    # Using alternate website because the url posted in the homework does not work anymore
+    # Try an alternate archive site
     hemispheres_url= 'https://web.archive.org/web/20181114171728/https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(hemispheres_url)
-    time.sleep(1)
 
-    # loop through each link and find the image uril and the title
+    time.sleep(2)
+
     hemisphere_image_urls=[]
+
     url_links = browser.find_by_css('a.product-item h3')
 
     for i in range(len(url_links)):
-        
         # create an empty dictionary for each hemisphe
         hemisphere={}
         browser.find_by_css('a.product-item h3')[i].click()
-        
+
         #get hemisphere title
         hemisphere['title'] = browser.find_by_css("h2.title").text
-        
+
         #next find the sample image anchor tag and get href
         sample_elem = browser.find_link_by_text('Sample').first
         hemisphere['img_url'] = sample_elem['href']
 
-    
         #Append hemisphere object to list
         hemisphere_image_urls.append(hemisphere)
 
@@ -119,7 +119,7 @@ def scrape_all():
     mars_info['featured_img_url'] = featured_img_url
     mars_info['mars_weather'] = mars_weather
     mars_info['mars_facts_html'] = mars_facts_html
-    # mars_info['hemisphere_image_urls'] = hemisphere_image_urls
+    mars_info['hemisphere_image_urls'] = hemisphere_image_urls
 
     # Close the browser
     browser.quit()
