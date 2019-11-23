@@ -119,7 +119,7 @@ def scrape_all():
     mars_info['featured_img_url'] = featured_img_url
     mars_info['mars_weather'] = mars_weather
     mars_info['mars_facts_html'] = mars_facts_html
-    mars_info['hemisphere_image_urls'] = hemisphere_image_urls
+    # mars_info['hemisphere_image_urls'] = hemisphere_image_urls
 
     # Close the browser
     browser.quit()
