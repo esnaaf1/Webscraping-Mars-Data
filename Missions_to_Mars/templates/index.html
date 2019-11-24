@@ -11,6 +11,7 @@
 </head>
 
 <body>
+  <!---- Render the top website container with the Scrape New Data button-->
   <div class="container-fluid">
     <div class="jumbotron text-center">
       <h1>Mission to Mars</h1>
@@ -20,6 +21,7 @@
     </div>
   </div>
 
+  <!-- Render the latest news-------->
   <div class="container container-padding">
       <div class="card border-primary">
           <h3 class="card-title">Latest Mars News</h3>
@@ -29,7 +31,7 @@
             </div>       
       </div>
   </div>
-  
+  <!-- Render the featured image -->
   <div class ="container container-padding">
     <div class="row">
       <div class="col-md-7">
@@ -40,7 +42,7 @@
           </div>
         </div>
       </div>
-
+  <!-- Render the latest Mars temprature -->
       <div class ="col-md-5">
         <div class ="card border-primary">
           <div class="card-body">
@@ -48,7 +50,7 @@
             <p>{{mars.mars_weather}}</p>
           </div>
         </div>
-
+  <!-- Rendner the Mars facts table-->
         <div class="card border-primary">
           <div class ="card-body">
             <h4 class="card-title"> Mars Facts</h4>
@@ -58,7 +60,7 @@
       </div>
     </div>
   </div>
-<!--- Mars Hemispheres-->
+<!---  Render hempisphere images from usgs.gov website  -->
   <div cLass="container container-padding">
       <div class ="row">
             <div class ="col-md-12">
@@ -66,13 +68,15 @@
             </div>
       </div>
   </div>
-
-  <!-- Images -->
+  
+  <!--- Check to see the hemisphere_image_url list is exists and is not empty-->
+  {% if mars.hemisphere_image_urls %}
+  <!-- create a grid for the images  -->
   <div class="container container-padding">
     <!-- First Row-->
     <div class ="row">
         <div class="col-md-6">
-          <div class="card border-primary">
+          <div class="card border-primary mb-3" stlye="max-width: 18rem;">
             <div class ="card-body">
                 <img src="{{mars.hemisphere_image_urls[0]['img_url']}}" align ="middle" class="img-responsive" alt="hempisphere1">
                 <h4 class= text-center">{{mars.hemisphere_image_urls[0]['title']}}<h4>
@@ -81,7 +85,7 @@
         </div>
   
         <div class="col-md-6">
-          <div class="card border-primary">
+          <div class="card border-primary mb-3" stlye="max-width: 18rem;">
             <div class="card-body">
                   <img src="{{mars.hemisphere_image_urls[1]['img_url']}}" align ="middle" class="img-responsive" alt="hempisphere2">
                   <h4 class= text-center">{{mars.hemisphere_image_urls[1]['title']}}<h4>
@@ -92,7 +96,7 @@
       <!---Second Row-->
       <div class ="row">
           <div class="col-md-6">
-            <div class="card border-primary">
+            <div class="card border-primary mb-3" stlye="max-width: 18rem;">
               <div class="card-body">
                     <img src="{{mars.hemisphere_image_urls[2]['img_url']}}" align ="middle" class="img-responsive" alt="hempisphere3">
                     <h4 class= text-center">{{mars.hemisphere_image_urls[2]['title']}}<h4>
@@ -101,7 +105,7 @@
           </div>
     
           <div class="col-md-6">
-            <div class="card border-primary">
+            <div class="card border-primary mb-3" stlye="max-width: 18rem;">
               <div class="card-body">
                     <img src="{{mars.hemisphere_image_urls[3]['img_url']}}" align ="middle" class="img-responsive" alt="hempisphere4">
                     <h4 class= text-center">{{mars.hemisphere_image_urls[3]['title']}}<h4>
@@ -110,6 +114,13 @@
           </div>
       </div>
   </div>
+  {% else %}
+    <div class="container-fluid">
+      <div class="jumbotron text-center">
+        <h2>ERROR Accessing Hemisphere Website</h2>
+      </div>
+    </div>
+  {% endif %}
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

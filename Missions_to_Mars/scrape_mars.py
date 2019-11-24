@@ -82,10 +82,10 @@ def scrape_all():
 
     #********************SCRAPE THE ASTROGEOLOGY SITE**************
     # Visit the USGS Astrogeology site to obtain high resolution images for each of Mar's hemisphers.
-    # NOTE: This site is no longer available
-    # hemispheres_url='https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    # NOTE: If this site is not available, try the alternate the archive site 
+    hemispheres_url='https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     # Try an alternate archive site
-    hemispheres_url= 'https://web.archive.org/web/20181114171728/https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    # hemispheres_url= 'https://web.archive.org/web/20181114171728/https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
     browser.visit(hemispheres_url)
 
     time.sleep(2)
